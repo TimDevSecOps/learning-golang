@@ -20,6 +20,15 @@ func doFileOperation() error {
 	return errors.Join(err1, err2)
 }
 
+/*
+返回的错误: disk full
+permission denied
+检测到磁盘已满错误
+检测到权限拒绝错误
+Unwrap 得到的错误列表:
+- disk full
+- permission denied
+*/
 func main() {
 	err := doFileOperation()
 
