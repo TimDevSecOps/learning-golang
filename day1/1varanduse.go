@@ -11,7 +11,33 @@ const (
 	Prod        // 2
 )
 
+type Weekday int
+
+const (
+	Sunday Weekday = iota
+	Monday
+	Tuesday
+	Wednesday
+	Thursday
+	Friday
+	Saturday
+)
+
+type Person struct {
+	Name   string
+	Age    int
+	Height int
+	Weight int
+}
+
+func (d Weekday) String() string {
+	return []string{"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"}[d]
+}
+
 func main() {
+	fmt.Println(Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday)
+	fmt.Println(Sunday.String(), Monday.String(), Tuesday.String(), Wednesday.String(), Thursday.String(), Friday.String(), Saturday.String())
+
 	var name string = "ZhangSan" // 显示声明并初始化
 	age := 25                    // 类型推导并初始化，只能用在函数内
 
@@ -110,4 +136,21 @@ func main() {
 		D4 = iota    // 3 ❗不是 2！因为 iota 始终以“声明行号”为基准
 	)
 	fmt.Printf("A4: %d, B4: %d, C4: %s, D4: %d\n", A4, B4, C4, D4)
+
+	num := 2
+
+	switch num {
+	case 1:
+		fmt.Println("Case 1")
+	case 2:
+		fmt.Println("Case 2")
+		fallthrough // 强制执行下一个 case 3（不会判断 case 3 条件）
+	case 3:
+		fmt.Println("Case 3")
+		fallthrough // 强制执行 default（即使 default 没条件）
+	case 4:
+		fmt.Println("Case 4") // 不会执行
+	default:
+		fmt.Println("Default case")
+	}
 }
